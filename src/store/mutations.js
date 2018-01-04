@@ -41,6 +41,9 @@ export default {
   [types.SET_PROJECT_LIST] (state, projects) {
     state.projects = { ...state.projects, ...projects }
   },
+  [types.SET_PROJECT_MESSAGES] (state, messages) {
+    state.messages = { ...state.messages, ...messages }
+  },
   [types.ADD_PROJECT_TO_STATE] (state, project) {
     // similar to SET_PROJECT_LIST should we get rid of one?
     state.projects = { ...state.projects, ...project }
