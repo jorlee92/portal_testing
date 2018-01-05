@@ -7,20 +7,16 @@
         :key= 'id'
         :message = 'message'
     />
-  <ChatMessageBox
-  
-  />
+
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import ChatMessage from '@/components/ChatMessage'
-import ChatMessageBox from '@/components/ChatMessageBox'
 export default {
   components: {
     ChatMessage,
-    ChatMessageBox,
   },
   mounted () {
     this.getProjectMessageList()

@@ -4,11 +4,10 @@ export default {
   getProjectMessageList ({ commit }) {
     firestore.collection('project_messages').get()
       .then((result) => {
-        let messages = []
+        let messages = {}
         result.docs.forEach((message) => {
-          messages.push(message.data())
+          messages[message.id] = message.data()
         })
-        console.log(messages)
         commit(SET_PROJECT_MESSAGES, messages)
       })
   },
