@@ -6,11 +6,13 @@ import Signup from '@/pages/Signup'
 import Profile from '@/pages/Profile'
 import ProfileDetail from '@/pages/ProfileDetail'
 import ProfileEdit from '@/pages/ProfileEdit'
-import Messages from '@/pages/Messages'
+import Messages from '@/containers/Messages'
 import Projects from '@/containers/Projects'
 import ProjectNew from '@/pages/ProjectNew'
 import ProjectIndex from '@/pages/ProjectIndex'
 import ProjectDetail from '@/pages/ProjectDetail'
+import ProjectMessages from '@/pages/ProjectMessages'
+import PersonalMessages from '@/pages/PersonalMessages'
 import { auth } from '@/firebase'
 
 Vue.use(Router)
@@ -59,6 +61,19 @@ let router = new Router({
       path: '/messages',
       name: 'Home',
       component: Messages,
+      children: [{
+        // Example: localhost:9001/messages/personal
+        path: 'personal',
+        name: 'PersonalMessages',
+        component: PersonalMessages,
+      },
+      {
+        // Example : localhost:9001/messages/project/1
+        path: 'project/:id',
+        name: 'ProjectMessages',
+        component: ProjectMessages,
+      }]
+      ,
     },
     {
       path: '/projects',

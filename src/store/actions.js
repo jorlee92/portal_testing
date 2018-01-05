@@ -1,12 +1,13 @@
 import { firestore } from '@/firebase'
 import { SET_PROJECT_LIST, ADD_PROJECT_TO_STATE, SET_PROJECT_MESSAGES } from '@/store/mutation-types'
+let pmRef = firestore.collection('project_messages')
 export default {
-  getProjectMessageList ({ commit }) {
-    firestore.collection('project_messages').get()
+  getProjectMessageList ({ commit }, id) {
+    pmRef.get()
       .then((result) => {
-        let messages = {}
+        let messages = []
         result.docs.forEach((message) => {
-          messages[message.id] = message.data()
+          messages.push(message.data())
         })
         commit(SET_PROJECT_MESSAGES, messages)
       })
