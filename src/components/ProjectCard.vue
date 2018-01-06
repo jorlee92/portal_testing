@@ -20,7 +20,8 @@
       <footer class="card-footer">
         <a href="#" class="card-footer-item">Save for later</a>
         <router-link class="card-footer-item" :to="{ name: 'ProjectDetail', params: { id: this.id } }">Show Details</router-link>
-        <a href="#" class="card-footer-item">Message Owner</a>
+        <router-link class="card-footer-item" :to="{ name: 'ProjectMessages', params: { id: this.id } }">Discussion</router-link>
+        <!-- <a href="#" class="card-footer-item">Message Owner</a> -->
       </footer>
     </div>
   </div>

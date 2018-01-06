@@ -12,24 +12,20 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
 import ChatMessage from '@/components/ChatMessage'
 export default {
   components: {
     ChatMessage,
   },
-  mounted () {
-    this.getProjectMessageList()
+  data () {
+    return {
+      id: this.$route.params.id,
+    }
   },
   computed: {
-    ...mapGetters({
-      messages: 'getProjectMessageList',
-    }),
-  },
-  methods: {
-    ...mapActions([
-      'getProjectMessageList',
-    ]),
+    messages: function () {
+      return this.getProjectMessageList(this.id)
+    },
   },
 }
 </script>
