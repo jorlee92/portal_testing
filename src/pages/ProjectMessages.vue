@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Messages Page</h1>
+    <h1>Project Messages Page</h1>
       <ChatMessage
         v-for="(message, id) in messages"
         :id = 'id'
@@ -13,9 +13,16 @@
 
 <script>
 import ChatMessage from '@/components/ChatMessage'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   components: {
     ChatMessage,
+  },
+  mounted () {
+    this.getProjectMessageList(this.id)
+  },
+  beforeDestroy () {
+    this.resetProjectMessages()
   },
   data () {
     return {
@@ -23,9 +30,15 @@ export default {
     }
   },
   computed: {
-    messages: function () {
-      return this.getProjectMessageList(this.id)
-    },
+    ...mapGetters({
+      messages: 'getProjectMessageList',
+    }),
+  },
+  methods: {
+    ...mapActions([
+      'getProjectMessageList',
+      'resetProjectMessages',
+    ]),
   },
 }
 </script>

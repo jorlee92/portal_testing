@@ -48,4 +48,7 @@ export default {
     // similar to SET_PROJECT_LIST should we get rid of one?
     state.projects = { ...state.projects, ...project }
   },
+  [types.RESET_PROJECT_MESSAGES] (state, messages) {
+    this.state.messages = {}
+  },
 }

@@ -1,7 +1,10 @@
 import { firestore } from '@/firebase'
-import { SET_PROJECT_LIST, ADD_PROJECT_TO_STATE } from '@/store/mutation-types'
+import { SET_PROJECT_LIST, ADD_PROJECT_TO_STATE, SET_PROJECT_MESSAGES, RESET_PROJECT_MESSAGES } from '@/store/mutation-types'
 let pmRef = firestore.collection('project_messages')
 export default {
+  resetProjectMessages ({ commit }) {
+    commit(RESET_PROJECT_MESSAGES, null)
+  },
   getProjectMessageList ({ commit }, id) {
     pmRef.where('project_id', '==', id).get()
       .then((result) => {
@@ -10,7 +13,7 @@ export default {
           messages.push(message.data())
         })
         console.log(messages)
-        return messages
+        commit(SET_PROJECT_MESSAGES, messages)
       })
   },
   getProjectList ({ commit }) {
